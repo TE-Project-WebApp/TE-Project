@@ -1,19 +1,14 @@
 <?php
-    define('DB_SERVER', 'localhost');
-    define('DB_USERNAME', 'root');
-    define('DB_PASSWORD', '');
-    define('DB_DATABASE', 'payroll');
-
     // This is just to automate the basic table creation.
     require_once "../authenticate/login.php";
-    $conn = mysqli_connect('localhost', 'root', '', 'payroll');
+    $conn = mysqli_connect($hostname, $username, $password, $database);
 
     if(!$conn)
         die("Error while connecting to database.".mysqli_connect_error());
 
     // If database with same name exists, delete it.
     try{
-        $drop_query = "DROP DATABASE {$DB_DATABASE}";
+        $drop_query = "DROP DATABASE {$database}";
         $drop_res = mysqli_query($conn, $drop_query);
     }
     // if database with same name doesn't exists, it raises error.
@@ -22,7 +17,7 @@
     }
 
     // create the database.
-    $db_create_query = "CREATE DATABASE {$DB_DATABASE}";
+    $db_create_query = "CREATE DATABASE {$database}";
     $db_create_result = mysqli_query($conn, $db_create_query);
 
     if(!$db_create_result)
@@ -34,7 +29,7 @@
 
     // ------------------------Database Created, Now creating admin table -----------------------------
 
-    $conn = mysqli_connect($DB_SERVER, $DB_USERNAME, $DB_PASSWORD, $DB_DATABASE, $database);
+    $conn = mysqli_connect($hostname, $username, $password, $database);
 
     if(!$conn)
         die("Error connecting database.<br>".mysqli_connect_error());
@@ -79,8 +74,9 @@
         return;
     }
 
-    removeDirectory('../user_images');
+    removeDirectory('C:\xampp\htdocs\Automated_Payroll\Payroll\user_images');
+    mkdir('C:\xampp\htdocs\Automated_Payroll\Payroll\user_images');
 
     mysqli_close($conn);
-
+    header('Refresh:01; url=../index.php');
 ?>

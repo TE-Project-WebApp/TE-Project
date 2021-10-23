@@ -9,7 +9,6 @@
     }
 
     if($_SESSION['loggedIn'] == false || ($_SESSION['isAdmin'] == false && $_SESSION['isHr'] == false)){
-        // echo "Error 404. <br> The page you requested does not exists.";
         echo "<script>alert('The page you requested does not exists.')</script>";
         header('Refresh:01; url=../index.php');
         exit();
@@ -20,7 +19,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head style="background-color:black;text:white">
     <title>Admin Homepage</title>
     <link rel="stylesheet" href="../index.css">
 </head>
@@ -40,7 +39,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="https://github.com/harshraj22/Automated_Payroll">Git <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="https://github.com/TE-Project-WebApp/TE-Project">Git <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <?php
@@ -185,8 +184,8 @@ _END;
     <footer>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-                <p><u><a href="https://github.com/harshraj22/Automated_Payroll" style="color:black;">Automated Payroll </a></u> is a Registered Website of IIT Dh, Inc. India
-                <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://github.com/harshraj22/Automated_Payroll" target="_blank" style="color:black;">Team 5</a></p>
+                <p><u><a href="https://github.com/TE-Project-WebApp/TE-Project" style="color:black;">Automated Payroll </a></p>
+                <p class="h6">&copy All right Reversed.</p>
             </div>
             </hr>
         </div>

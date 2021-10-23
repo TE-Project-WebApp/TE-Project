@@ -12,6 +12,8 @@ window.setInterval(
 }, 10000);
 
 
+
+
 // // Simulate a logging library
 // var $log = $('#log');
 // var log = function (str) {
@@ -24,14 +26,14 @@ window.setInterval(
 //   setTimeout(function () {
 //     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 //     window.location.reload(1);
-//   },4000);
+//   }, 10000);
 // };
 
 // // Simulate an app.
 // log('getting your location');
-// getUserLocation(function(position){ 
+// getUserLocation(function(position){
 //  log('you are here: ' + position.coords.latitude + ', ' + position.coords.longitude);
 // }
 //   , function (err) {
-//   log('oh noes! ' + err)
+//   log('oh no! ' + err)
 // });

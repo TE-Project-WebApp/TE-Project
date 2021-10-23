@@ -9,8 +9,8 @@
 
     $date = trim($_GET['date']);
     $employee = trim($_GET['emp']);
-    
-    $imageQuery = "SELECT * FROM {$employee} WHERE date_='{$date}' AND latitude='NA'";
+
+    $imageQuery = "SELECT DISTINCT(pic) FROM {$employee} WHERE date_='{$date}' AND latitude='{$employee}'";
     $result = mysqli_query($conn, $imageQuery);
 
     if(!$result) {
@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="https://github.com/harshraj22/Automated_Payroll">Git <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="https://github.com/TE-Project-WebApp/TE-Project">Git <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <?php
@@ -82,7 +82,7 @@
                             for($i=0;$i<$number_of_rows;$i++){
                                 $row = mysqli_fetch_row($result);
                                 echo <<< _END
-                                    <th><img src='{$row[3]}'></img></th>
+                                    <th><img src='{$row[0]}'></img></th>
 _END;
                             }
                         ?>
@@ -91,6 +91,6 @@ _END;
                 </tbody>
             </div>
         </div>
-                
+
     </body>
     </html>

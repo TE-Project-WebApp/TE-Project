@@ -13,8 +13,8 @@
 			exit();
 		}
 
-		$newUserName = trim($_POST['username']);  
-		$newUserPass = trim($_POST['pass']);   
+		$newUserName = trim($_POST['username']);
+		$newUserPass = trim($_POST['pass']);
 
 		$check_user_exists_query = "SELECT * FROM auth WHERE username='{$newUserName}'";
 		$check_user_exists_result = mysqli_query($conn, $check_user_exists_query);
@@ -24,27 +24,29 @@
 			exit();
 		}
 		else{
-			$create_user_query = "INSERT INTO auth VALUES('{$newUserName}','{$newUserPass}','no','yes')";
+			$create_user_query = "INSERT INTO auth VALUES('{$newUserName}','{$newUserPass}','no', 'no')";
 			$create_user_result = mysqli_query($conn, $create_user_query);
 
 			if(!$create_user_result)
-				echo "Error creating Hr....!<br>".mysqli_error($conn);
-				// echo "<script>alert('Error creating Hr')</script>";
+				echo "Error creating user....!<br>".mysqli_error($conn);
 
-			$insert_table_query = "INSERT INTO hr_table VALUE('{$newUserName}',10)"; 
-			$insert_table_result = mysqli_query($conn, $insert_table_query);
+			$create_user_table_query = "CREATE TABLE {$newUserName} (date_ DATE NOT NULL, latitude VARCHAR(30) NOT NULL, longitude VARCHAR(30) NOT NULL, pic VARCHAR(60) DEFAULT NULL)";
+			$create_user_table_result = mysqli_query($conn, $create_user_table_query);
 
-			if(!$insert_table_result)
-				echo "There was some problem inserting into table for {$newUserName}.<br>".mysqli_error($conn);
-				// echo "<script>alert('There was some problem inserting into table for {$newUserName}.')</script>";
+			if(!$create_user_table_result)
+				echo "There was some problem creating table for {$newUserName}.<br>".mysqli_error($conn);
 
-			// echo "Created Hr {$newUserName}...";
-			echo "<script>alert('Created Hr {$newUserName}')</script>";
+			if(!file_exists("../user_images/{$newUserName}")) {
+				mkdir("../user_images/{$newUserName}",0777,true);
+			}
+			// echo "Created user {$newUserName}...";
+			echo "<script>alert('Created User {$newUserName}.')</script>";
+	        header('Refresh:01; url=adminProfile.php');
+	        exit();
 		}
 
         // mysqli_close($conn);
 
-		header("Refresh:01; url='adminProfile.php'");
 	}
 	else{
 		echo <<< _END
@@ -65,13 +67,13 @@
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
-						<a class="nav-link" href="https://github.com/harshraj22/Automated_Payroll">Git <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="https://github.com/TE-Project-WebApp/TE-Project">Git <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="../user/logout.php">Logout</a>
 					</li>
 					<li class="nav-item">
-						
+						<a class="nav-link" href="../admin/createHr.php">Create Hr</a>
 					</li>
 					</ul>
 					<form class="form-inline my-2 my-lg-0" action="https://www.google.com">
@@ -81,7 +83,7 @@
 				</div>
 				</nav>
 
-				<body style="background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);">
+				<body style="background-image:linear-gradient(to bottom right, rgba(255,0,0,1), rgba(0,0,255,1));">
 					<div class="signupSection">
 					  <div class="info">
 						<h2>Company Name</h2>
@@ -91,8 +93,8 @@
 							<p class="blockquote p-3">-Ariana Grande</p>
 						</blockquote>
 					  </div>
-					  <form action="createHr.php" method="POST" class="signupForm" name="signupform">
-						<h2>Enter New HR Details</h2>
+					  <form action="createUser.php" method="POST" class="signupForm" name="signupform">
+						<h2>Enter New User Details</h2>
 						<ul class="noBullet">
 						  <li>
 							<label for="username"></label>
@@ -113,7 +115,7 @@
 					  </form>
 					</div>
 				</body>
-			
+
 _END;
 	}
 

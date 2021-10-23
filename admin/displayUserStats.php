@@ -17,20 +17,20 @@
         header('url=../index.php');
         exit();
     }
-    $today = 0;             
+    $today = 0;
     if(isset($_GET['date'])){
         $today = $_GET['date'];
         $today = substr($today,0,-3);
     }
-    else 
+    else
         $today = date('Y-m');
     $today = (string)$today.'%';
-    
-    $userQuery = "SELECT DISTINCT * FROM {$_SESSION['queriedUser']} WHERE date_ LIKE '{$today}' AND latitude != 'NA'";
+
+    $userQuery = "SELECT DISTINCT * FROM {$_SESSION['queriedUser']} WHERE date_ LIKE '{$today}' AND latitude >0";
     $userResult = mysqli_query($conn, $userQuery);
 
     if(!$userResult)
-        die("Error fetching user deatils<br>".mysqli_error($conn));
+        die("Error fetching user details<br>".mysqli_error($conn));
     $number_of_rows = mysqli_num_rows($userResult);
 
     // mysqli_close($conn);
@@ -67,7 +67,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="https://github.com/harshraj22/Automated_Payroll">Git <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="https://github.com/TE-Project-WebApp/TE-Project.git">Git <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="adminProfile.php">Profile</a>
@@ -86,7 +86,7 @@
 
     <div class="container">
         <div class="row">
-            <h3 class="col-8 p-3 text-center">The details for <?php echo $_GET['user']; ?> are : <br></h3>    
+            <h3 class="col-8 p-3 text-center">The details for <?php echo $_GET['user']; ?> are : <br></h3>
             <div class="col float-right p-3">
                 <!-- <button type="submit" action="calcSalary.php?user=<?php echo $_GET['user']; ?>" class="btn btn-primary" value="Calc Salary">  -->
                 <form method="POST" action="calcSalary.php?date=<?php echo $today; ?>">
@@ -164,11 +164,11 @@ _END;
         <footer>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-                    <p><u><a href="https://github.com/harshraj22/Automated_Payroll" style="color:black;">Automated Payroll </a></u> is a Registered Website of IIT Dh, Inc. India 
-                    <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://github.com/harshraj22/Automated_Payroll" target="_blank" style="color:black;">Team 5</a></p>
+                    <p><u><a href="https://github.com/TE-Project-WebApp/TE-Project.git" style="color:black;">Automated Payroll </a></u></p>
+                    <p class="h6">&copy All right Reversed.</p>
                 </div>
                 </hr>
-            </div>  
+            </div>
         </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

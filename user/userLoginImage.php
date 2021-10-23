@@ -21,7 +21,7 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-center">
             <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Signing in...</span>
+                <h3><span class="sr-only">Signing in...</span></h3>
             </div>
         </div>
         <video id="video" width="640" height="480" style="display: none;" autoplay></video>

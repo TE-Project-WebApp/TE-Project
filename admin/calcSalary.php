@@ -20,7 +20,7 @@
 		header("Refresh:02; url=../index.php");
         exit();
 	}
-	
+
 	$salary_per_hour = 10;
 
 	if(!isset($_SESSION['isHr']) || $_SESSION['isHr'] == true){
@@ -29,22 +29,22 @@
 
 		$cur_row = mysqli_fetch_row($result_for_rate);
 		$salary_per_hour = (int)($cur_row[0]);
-		
+
 		// echo $salary_per_hour.' inside <br>'.$query_for_rate."<br>";
 		// print_r($cur_row);
 
 	}
-	else 
+	else
 		$salary_per_hour = 10;
-					
+
 	// echo $salary_per_hour.'<br>';
 
 	$today = date('Y-m');
 	$today = (string)$today.'%';
 	if(isset($_GET['date']))
 		$today = $_GET['date'];
-	
-	$userQuery = "SELECT COUNT(*) FROM {$_POST['user']} WHERE date_ LIKE '{$today}' AND latitude!='NA' AND ABS(latitude-{$pref_latitude}) < 0.1 AND ABS(longitude - {$pref_longitude}) < 0.1";
+
+	$userQuery = "SELECT COUNT(*) FROM {$_POST['user']} WHERE date_ LIKE '{$today}' AND latitude>0 AND ABS(latitude-{$pref_latitude}) < 0.1 AND ABS(longitude - {$pref_longitude}) < 0.1";
 	$userResult = mysqli_query($conn, $userQuery);
 
 	// echo $userQuery." ".$salary_per_hour.'<br>';
@@ -82,7 +82,7 @@
 	  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="https://github.com/harshraj22/Automated_Payroll">Git <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="https://github.com/TE-Project-WebApp/TE-Project">Git <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="adminProfile.php">Profile</a>
@@ -116,11 +116,11 @@ _END
     <footer>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-                <p><u><a href="https://github.com/harshraj22/Automated_Payroll" style="color:black;">Automated Payroll </a></u> is a Registered Website of IIT Dh, Inc. India 
-                <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://github.com/harshraj22/Automated_Payroll" target="_blank" style="color:black;">Team 5</a></p>
+                <p><a href="https://github.com/TE-Project-WebApp/TE-Project" style="color:black;">Automated Payroll</a></p>
+                <p class="h6">&copy All right Reversed.</p>
             </div>
             </hr>
-        </div>  
+        </div>
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

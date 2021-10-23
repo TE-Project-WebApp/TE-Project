@@ -36,7 +36,7 @@
 	for($i=0;$i<$extract_user_num;$i++){
 		$user = mysqli_fetch_row($extract_user_res)[0];
 
-		$user_query = "SELECT COUNT(*) FROM  {$user} WHERE date_ LIKE '{$today}' AND latitude!='NA' AND ABS(latitude-{$pref_latitude}) < 0.1 AND ABS(longitude - {$pref_longitude}) < 0.1";
+		$user_query = "SELECT COUNT(*) FROM  {$user} WHERE date_ LIKE '{$today}' AND latitude>0 AND ABS(latitude-{$pref_latitude}) < 0.1 AND ABS(longitude - {$pref_longitude}) < 0.1";
 		$user_res = mysqli_query($conn, $user_query);
 
 		$user_salary = mysqli_fetch_row($user_res)[0]*$rate;
@@ -55,7 +55,7 @@
 	header('Cache-Control: must-revalidate');
 	header('Pragma: public');
 	header('Content-Length: ' . filesize($file));
-	header("Content-Type: application/force-download"); 
+	header("Content-Type: application/force-download");
 	// header("Refresh:01; url='adminProfile.php'");
 	ob_clean();
 	flush();

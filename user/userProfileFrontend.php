@@ -11,7 +11,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,6 +53,5 @@
             <input type="submit" name="logout" id="logout" value="Logout" class="btn btn-primary m-3">
         </form>
     </div>
-
 </body>
 </html>

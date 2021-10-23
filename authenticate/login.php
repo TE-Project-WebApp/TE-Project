@@ -16,7 +16,7 @@ if(isset($_POST['but_submit'])){
 
         if($count > 0){
             $_SESSION['uname'] = $uname;
-            header('Location: ../Payroll/index.php');
+            header('Location: ../Payroll/index.html');
         }else{
             echo "Invalid username and password";
         }

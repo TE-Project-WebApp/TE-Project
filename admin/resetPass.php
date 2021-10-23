@@ -1,5 +1,5 @@
 <?php
-    
+
     session_start();
     if (!isset($_POST['pass'])) {
         $currentuser = trim($_POST['user']);
@@ -16,13 +16,13 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                        <a class="nav-link" href="https://github.com/harshraj22/Automated_Payroll">Git <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="https://github.com/TE-Project-WebApp/TE-Project">Git <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                         </li>
                         <li class="nav-item">
-                        
+
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0" action="https://www.google.com">
@@ -45,8 +45,8 @@
                     </div>
                 </div>
             </div>
-        
-        
+
+
 _END;
     }
     else {
@@ -55,7 +55,7 @@ _END;
 
         if(!$conn)
             die("Error while connecting to database.".mysqli_connect_error());
-    
+
         $newPass = trim($_POST['pass']);
         $currentuser = trim($_POST['user']);
         $query = "UPDATE auth SET pass = '{$newPass}' WHERE username = '{$currentuser}'";
@@ -67,7 +67,7 @@ _END;
             header('Refresh:01; url=adminProfile.php');
         }
         else {
-            // echo "Successfully updated password."; 
+            // echo "Successfully updated password.";
             echo "<script>alert('Successfully updated password')</script>";
             header('Refresh:01; url=adminProfile.php');
         }

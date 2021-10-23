@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Homepage</title>
+    <title>User Homepage</title>
 </head>
 <body>
 
@@ -37,6 +37,7 @@
 
         $date = date('Y-n-d');
         echo $date."<br>";
+        global $count ;
 
         $conn = mysqli_connect($hostname, $username, $password, $database);
         if(!$conn)
@@ -56,8 +57,6 @@
     echo "</div>";
 
     header('Refresh:10; url=userProfileFrontend.php');
-    // mysqli_close($conn);
-
-    // echo "asldfja asdlf";
+    //mysqli_close($conn);
     exit();
 ?>
